@@ -3,9 +3,32 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Separator } from '../components/ui/separator';
-import { Clock, MapPin, Star, ChevronDown } from 'lucide-react';
-import { services, signals, philosophyPoints, testimonials, aboutKarl } from '../mock';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
+import { 
+  Brain, Activity, Moon, Droplets, Heart, Wind, Zap, Shield,
+  MapPin, Phone, Mail, Clock, Star, CheckCircle, AlertCircle
+} from 'lucide-react';
+import { 
+  practitionerInfo, 
+  whyConsultReasons, 
+  mtcTreatments, 
+  sessionProcess,
+  testimonials,
+  faqItems,
+  pricing
+} from '../mock';
 import '../styles/home.css';
+
+const iconMap = {
+  brain: Brain,
+  activity: Activity,
+  moon: Moon,
+  droplets: Droplets,
+  heart: Heart,
+  wind: Wind,
+  zap: Zap,
+  shield: Shield
+};
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -41,11 +64,11 @@ const Home = () => {
   }, []);
 
   const handleBooking = () => {
-    alert('Système de réservation à venir');
+    alert('Système de réservation à venir - Contactez Karl Bruisson par téléphone');
   };
 
-  const handleMiniBilan = () => {
-    alert('Mini-bilan offert - Formulaire à venir');
+  const handleContact = () => {
+    window.scrollTo({ top: document.getElementById('contact').offsetTop, behavior: 'smooth' });
   };
 
   return (
@@ -54,13 +77,17 @@ const Home = () => {
       <header className="header">
         <div className="header-content">
           <div className="logo-container">
-            <span className="chinese-logo">三宝</span>
-            <span className="logo-text">Institut San Bao</span>
+            <div className="logo-accent"></div>
+            <div className="logo-info">
+              <span className="logo-name">{practitionerInfo.name}</span>
+              <span className="logo-subtitle">Médecine Traditionnelle Chinoise</span>
+            </div>
           </div>
           <nav className="nav-menu">
-            <a href="#services" className="nav-link">Services</a>
-            <a href="#about" className="nav-link">À Propos</a>
-            <a href="#contact" className="nav-link">Contact</a>
+            <a href="#pourquoi" className="nav-link">Pourquoi consulter</a>
+            <a href="#soins" className="nav-link">Mes soins</a>
+            <a href="#deroulement" className="nav-link">Déroulement</a>
+            <a href="#apropos" className="nav-link">À propos</a>
             <Button onClick={handleBooking} className="cta-button">Prendre RDV</Button>
           </nav>
         </div>
@@ -68,91 +95,130 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="chinese-bg-char" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>气</div>
+        <div className="hero-background-char" style={{ transform: `translateY(${scrollY * 0.2}px)` }}>氣</div>
         <div className="hero-content">
           <div className="hero-badge">
-            <span className="badge-chinese">平衡</span>
-            <span className="badge-text">Équilibre • Harmonie • Bien-être</span>
+            <span className="badge-icon">🌿</span>
+            <span>Médecine Traditionnelle Chinoise au Pays Basque</span>
           </div>
           <h1 className="hero-title">
-            Révélez l'harmonie <br />
-            <span className="hero-title-accent">intérieure</span>
+            Votre santé mérite une approche <br />
+            <span className="hero-accent">globale et naturelle</span>
           </h1>
           <p className="hero-description">
-            Découvrez comment les soins énergétiques chinois peuvent transformer votre bien-être <br />
-            en équilibrant votre corps et votre esprit.
+            Praticien en Médecine Traditionnelle Chinoise, je vous accompagne avec <strong>acupuncture</strong>, 
+            <strong>moxibustion</strong> et <strong>ventouses</strong> pour rééquilibrer votre énergie vitale et retrouver <br />
+            harmonie, soulagement des douleurs et bien-être durable.
           </p>
-          <div className="hero-signals">
-            {signals.map((signal) => (
-              <div key={signal.id} className="signal-item">
-                <div className="signal-dot" />
-                <span>{signal.title}</span>
-              </div>
-            ))}
-          </div>
           <div className="hero-actions">
             <Button onClick={handleBooking} size="lg" className="primary-button">
+              <Phone className="button-icon" />
               Prendre rendez-vous
             </Button>
-            <Button onClick={handleMiniBilan} variant="outline" size="lg" className="secondary-button">
-              Mini-bilan offert
+            <Button onClick={handleContact} variant="outline" size="lg" className="secondary-button">
+              En savoir plus
+            </Button>
+          </div>
+          <div className="hero-info-cards">
+            <div className="info-card">
+              <Clock className="info-icon" />
+              <div>
+                <span className="info-label">Première séance</span>
+                <span className="info-value">{pricing.firstSession.duration} - {pricing.firstSession.price}</span>
+              </div>
+            </div>
+            <div className="info-card">
+              <MapPin className="info-icon" />
+              <div>
+                <span className="info-label">Localisation</span>
+                <span className="info-value">Bassussarry, Pays Basque</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Medical Disclaimer */}
+      <section className="disclaimer-section">
+        <div className="section-container">
+          <div className="disclaimer-content">
+            <AlertCircle className="disclaimer-icon" />
+            <div className="disclaimer-text">
+              <h3>Information importante</h3>
+              <p>
+                La Médecine Traditionnelle Chinoise <strong>ne se substitue pas à la médecine conventionnelle</strong>. 
+                Elle intervient <strong>en complément</strong> de votre suivi médical pour optimiser votre bien-être. 
+                Ne modifiez jamais un traitement sans l'avis de votre médecin.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Consult Section */}
+      <section className="why-consult-section animate-on-scroll" id="pourquoi" style={{ opacity: isVisible['pourquoi'] ? 1 : 0 }}>
+        <div className="section-container">
+          <div className="section-header">
+            <span className="section-subtitle">Pour quels motifs consulter</span>
+            <h2 className="section-title">Vous vous reconnaissez ?</h2>
+            <p className="section-description">
+              La Médecine Traditionnelle Chinoise accompagne de nombreux déséquilibres du quotidien en soutenant <br />
+              l'équilibre énergétique de votre corps et de votre esprit.
+            </p>
+          </div>
+          <div className="reasons-grid">
+            {whyConsultReasons.map((reason, index) => {
+              const IconComponent = iconMap[reason.icon];
+              return (
+                <Card key={reason.id} className="reason-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <CardHeader>
+                    <div className="reason-icon-wrapper">
+                      <IconComponent className="reason-icon" />
+                    </div>
+                    <CardTitle className="reason-title">{reason.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="reason-description">{reason.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+          <div className="section-cta">
+            <Button onClick={handleBooking} size="lg" className="accent-button">
+              Je souhaite être accompagné(e)
             </Button>
           </div>
         </div>
-        <div className="scroll-indicator">
-          <ChevronDown className="scroll-icon" />
-        </div>
       </section>
 
-      {/* Tension Section */}
-      <section className="tension-section animate-on-scroll" id="tension" style={{ opacity: isVisible['tension'] ? 1 : 0 }}>
+      {/* MTC Treatments Section */}
+      <section className="treatments-section animate-on-scroll" id="soins" style={{ opacity: isVisible['soins'] ? 1 : 0 }}>
         <div className="section-container">
-          <div className="tension-grid">
-            <div className="tension-content">
-              <div className="section-badge">
-                <span className="badge-chinese-small">警</span>
-                <span>Signaux d'alerte</span>
-              </div>
-              <h2 className="section-title">Vous tenez. <br />Mais à quel prix ?</h2>
-              <div className="tension-description">
-                <p>
-                  Vous avancez sans relâche, mais votre corps vous parle : dos bloqué, nuque raide, épaules lourdes.
-                </p>
-                <p>
-                  Ces signaux, loin d'être des faiblesses, sont des alertes précieuses. Ils vous rappellent que le repos est essentiel et que l'équilibre doit être restauré pour éviter l'épuisement.
-                </p>
-              </div>
-              <Button onClick={handleBooking} className="accent-button">Comprendre mes signaux</Button>
-            </div>
-            <div className="tension-visual">
-              <div className="visual-card">
-                <span className="large-chinese-char">痛</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy Section */}
-      <section className="philosophy-section animate-on-scroll" id="philosophy" style={{ opacity: isVisible['philosophy'] ? 1 : 0 }}>
-        <div className="section-container">
-          <div className="philosophy-header">
-            <span className="chinese-subtitle">道</span>
-            <h2 className="section-title-center">Je n'écoute pas seulement la douleur.</h2>
-            <p className="section-description-center">
-              Mon approche commence toujours par une écoute attentive. J'analyse vos douleurs, votre sommeil,<br />
-              votre énergie, et vos émotions pour comprendre votre terrain unique.
+          <div className="section-header">
+            <span className="section-subtitle">Mes outils thérapeutiques</span>
+            <h2 className="section-title">Les soins de Médecine Traditionnelle Chinoise</h2>
+            <p className="section-description">
+              Une approche millénaire pour rééquilibrer votre énergie vitale (Qi) et harmoniser corps et esprit.
             </p>
           </div>
-          <div className="philosophy-grid">
-            {philosophyPoints.map((point, index) => (
-              <Card key={point.id} className="philosophy-card" style={{ animationDelay: `${index * 0.1}s` }}>
+          <div className="treatments-grid">
+            {mtcTreatments.map((treatment, index) => (
+              <Card key={treatment.id} className="treatment-card" style={{ animationDelay: `${index * 0.15}s` }}>
+                <div className="treatment-chinese">{treatment.chineseChar}</div>
                 <CardHeader>
-                  <div className="card-number">{String(index + 1).padStart(2, '0')}</div>
-                  <CardTitle className="philosophy-card-title">{point.title}</CardTitle>
+                  <CardTitle className="treatment-title">{treatment.name}</CardTitle>
+                  <CardDescription className="treatment-description">{treatment.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="philosophy-card-description">{point.description}</p>
+                  <div className="treatment-benefits">
+                    {treatment.benefits.map((benefit, idx) => (
+                      <div key={idx} className="benefit-item">
+                        <CheckCircle className="benefit-icon" />
+                        <span>{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -160,76 +226,92 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="services-section animate-on-scroll" id="services" style={{ opacity: isVisible['services'] ? 1 : 0 }}>
+      {/* Session Process Section */}
+      <section className="process-section animate-on-scroll" id="deroulement" style={{ opacity: isVisible['deroulement'] ? 1 : 0 }}>
         <div className="section-container">
-          <div className="services-header">
-            <span className="chinese-subtitle">療</span>
-            <h2 className="section-title-center">Options de Soins</h2>
-            <p className="section-description-center">
-              Explorez une gamme de soins énergétiques chinois conçus pour rétablir votre équilibre intérieur.
+          <div className="section-header">
+            <span className="section-subtitle">Déroulement d'une séance</span>
+            <h2 className="section-title">Comment se passe une consultation ?</h2>
+            <p className="section-description">
+              Chaque séance est personnalisée selon votre bilan énergétique et vos besoins spécifiques.
             </p>
           </div>
-          <div className="services-grid">
-            {services.map((service, index) => (
-              <Card key={service.id} className="service-card" style={{ animationDelay: `${index * 0.15}s` }}>
-                <div className="service-chinese-char">{service.chineseChar}</div>
-                <CardHeader>
-                  <CardTitle className="service-title">{service.title}</CardTitle>
-                  <CardDescription className="service-description">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="service-footer">
-                  <div className="service-details">
-                    <div className="service-detail">
-                      <Clock className="detail-icon" />
-                      <span>{service.duration}</span>
-                    </div>
-                    <Badge className="service-price">{service.price}</Badge>
-                  </div>
-                  <Button onClick={handleBooking} className="service-button" variant="outline">
-                    Réserver
-                  </Button>
-                </CardContent>
-              </Card>
+          <div className="process-grid">
+            {sessionProcess.map((step, index) => (
+              <div key={step.id} className="process-step" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="step-number">{step.step}</div>
+                <div className="step-content">
+                  <h3 className="step-title">{step.title}</h3>
+                  <Badge className="step-duration">{step.duration}</Badge>
+                  <p className="step-description">{step.description}</p>
+                </div>
+              </div>
             ))}
+          </div>
+          <div className="process-pricing">
+            <Card className="pricing-card">
+              <CardHeader>
+                <CardTitle>Première consultation</CardTitle>
+                <CardDescription>{pricing.firstSession.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="pricing-info">
+                  <span className="pricing-duration">{pricing.firstSession.duration}</span>
+                  <span className="pricing-price">{pricing.firstSession.price}</span>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="pricing-card">
+              <CardHeader>
+                <CardTitle>Séance de suivi</CardTitle>
+                <CardDescription>{pricing.followUp.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="pricing-info">
+                  <span className="pricing-duration">{pricing.followUp.duration}</span>
+                  <span className="pricing-price">{pricing.followUp.price}</span>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="about-section animate-on-scroll" id="about" style={{ opacity: isVisible['about'] ? 1 : 0 }}>
+      <section className="about-section animate-on-scroll" id="apropos" style={{ opacity: isVisible['apropos'] ? 1 : 0 }}>
         <div className="section-container">
           <div className="about-grid">
-            <div className="about-visual">
-              <div className="about-image-placeholder">
-                <span className="placeholder-chinese">师</span>
+            <div className="about-image">
+              <div className="about-placeholder">
+                <span className="placeholder-text">師</span>
               </div>
             </div>
             <div className="about-content">
-              <div className="section-badge">
-                <span className="badge-chinese-small">师</span>
-                <span>Le Praticien</span>
-              </div>
-              <h2 className="section-title">{aboutKarl.name}</h2>
-              <p className="about-subtitle">{aboutKarl.title}</p>
+              <span className="section-subtitle">Votre praticien</span>
+              <h2 className="section-title">{practitionerInfo.name}</h2>
+              <p className="about-subtitle">{practitionerInfo.title}</p>
               <Separator className="about-separator" />
-              <p className="about-description">{aboutKarl.description}</p>
-              <div className="about-location">
-                <MapPin className="location-icon" />
-                <span>{aboutKarl.location}</span>
+              <p className="about-description">{practitionerInfo.description}</p>
+              <div className="about-details">
+                <div className="about-detail">
+                  <MapPin className="detail-icon" />
+                  <span>{practitionerInfo.location}</span>
+                </div>
               </div>
-              <Button onClick={handleBooking} className="accent-button">Prendre rendez-vous</Button>
+              <Button onClick={handleBooking} className="accent-button">
+                Prendre rendez-vous
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="testimonials-section animate-on-scroll" id="testimonials" style={{ opacity: isVisible['testimonials'] ? 1 : 0 }}>
+      <section className="testimonials-section animate-on-scroll" id="temoignages" style={{ opacity: isVisible['temoignages'] ? 1 : 0 }}>
         <div className="section-container">
-          <div className="testimonials-header">
-            <span className="chinese-subtitle">评</span>
-            <h2 className="section-title-center">Témoignages</h2>
+          <div className="section-header">
+            <span className="section-subtitle">Témoignages</span>
+            <h2 className="section-title">Ce qu'ils en disent</h2>
           </div>
           <div className="testimonials-grid">
             {testimonials.map((testimonial, index) => (
@@ -240,6 +322,7 @@ const Home = () => {
                       <Star key={i} className="star-icon" fill="currentColor" />
                     ))}
                   </div>
+                  <Badge className="testimonial-issue">{testimonial.issue}</Badge>
                   <p className="testimonial-text">"{testimonial.text}"</p>
                   <p className="testimonial-author">— {testimonial.name}</p>
                 </CardContent>
@@ -249,23 +332,48 @@ const Home = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="faq-section animate-on-scroll" id="faq" style={{ opacity: isVisible['faq'] ? 1 : 0 }}>
+        <div className="section-container">
+          <div className="section-header">
+            <span className="section-subtitle">Questions fréquentes</span>
+            <h2 className="section-title">Vos questions, mes réponses</h2>
+          </div>
+          <Accordion type="single" collapsible className="faq-accordion">
+            {faqItems.map((item) => (
+              <AccordionItem key={item.id} value={`item-${item.id}`} className="faq-item">
+                <AccordionTrigger className="faq-question">{item.question}</AccordionTrigger>
+                <AccordionContent className="faq-answer">{item.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="cta-section animate-on-scroll" id="contact" style={{ opacity: isVisible['contact'] ? 1 : 0 }}>
-        <div className="cta-bg-char">和</div>
         <div className="section-container">
           <div className="cta-content">
-            <h2 className="cta-title">L'équilibre se maîtrise.</h2>
+            <h2 className="cta-title">Prêt(e) à prendre soin de vous ?</h2>
             <p className="cta-description">
-              Votre corps ne vous bloque pas. Il vous alerte. Prenez le temps de comprendre ces signaux<br />
-              et commencez votre chemin vers l'équilibre.
+              Prenez rendez-vous pour une première consultation et commencez votre chemin <br />
+              vers un mieux-être durable grâce à la Médecine Traditionnelle Chinoise.
             </p>
             <div className="cta-actions">
               <Button onClick={handleBooking} size="lg" className="primary-button-large">
+                <Phone className="button-icon" />
                 Prendre rendez-vous
               </Button>
-              <Button onClick={handleMiniBilan} variant="outline" size="lg" className="secondary-button-large">
-                Mini-bilan offert
-              </Button>
+            </div>
+            <div className="cta-contact-info">
+              <div className="contact-item">
+                <Phone className="contact-icon" />
+                <span>{practitionerInfo.phone}</span>
+              </div>
+              <div className="contact-item">
+                <Mail className="contact-icon" />
+                <span>{practitionerInfo.email}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -277,30 +385,36 @@ const Home = () => {
           <div className="footer-grid">
             <div className="footer-section">
               <div className="footer-logo">
-                <span className="footer-chinese">三宝</span>
-                <span className="footer-text">Institut San Bao</span>
+                <div className="footer-logo-accent"></div>
+                <div>
+                  <span className="footer-name">{practitionerInfo.name}</span>
+                  <span className="footer-subtitle">Médecine Traditionnelle Chinoise</span>
+                </div>
               </div>
-              <p className="footer-tagline">Votre équilibre, mon savoir-faire</p>
+              <p className="footer-tagline">Acupuncture • Moxibustion • Ventouses</p>
             </div>
             <div className="footer-section">
               <h4 className="footer-title">Navigation</h4>
               <nav className="footer-nav">
-                <a href="#services">Services</a>
-                <a href="#about">À Propos</a>
-                <a href="#testimonials">Témoignages</a>
-                <a href="#contact">Contact</a>
+                <a href="#pourquoi">Pourquoi consulter</a>
+                <a href="#soins">Mes soins</a>
+                <a href="#deroulement">Déroulement</a>
+                <a href="#apropos">À propos</a>
               </nav>
             </div>
             <div className="footer-section">
               <h4 className="footer-title">Contact</h4>
-              <p>CEERS Basque</p>
-              <p>Domaine du Makila</p>
-              <p>Bassussary près de Bayonne</p>
+              <div className="footer-contact">
+                <p>{practitionerInfo.location}</p>
+                <p>{practitionerInfo.phone}</p>
+                <p>{practitionerInfo.email}</p>
+              </div>
             </div>
           </div>
           <Separator className="footer-separator" />
           <div className="footer-bottom">
-            <p>© 2025 Institut San Bao. Tous droits réservés.</p>
+            <p>© 2025 {practitionerInfo.name}. Tous droits réservés.</p>
+            <p className="footer-legal">La MTC ne se substitue pas à la médecine conventionnelle</p>
           </div>
         </div>
       </footer>
