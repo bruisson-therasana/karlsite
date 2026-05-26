@@ -634,8 +634,8 @@ const Home = () => {
               <div className="ebook-showcase">
                 <div className="ebook-glow"></div>
                 <img 
-                  src="https://customer-assets.emergentagent.com/job_chinese-web-elegant/artifacts/jhb2y25q_7D548ED2-B9C4-4C4F-A7CA-62664EC6BB6F.PNG" 
-                  alt="E-book offert - Karl Bruisson - Le corps murmure longtemps avant d'être obligé de crier" 
+                  src="https://customer-assets.emergentagent.com/job_chinese-web-elegant/artifacts/fhnoujmf_3B403768-4F0B-4708-932F-E3A8C0B99E6E.PNG" 
+                  alt="E-book offert - Karl Bruisson - Pourquoi le corps parle avant l'épuisement" 
                   className="ebook-cover"
                 />
                 <div className="ebook-value-tag">
@@ -660,29 +660,29 @@ const Home = () => {
                   <div className="ebook-bonus-item">
                     <div className="ebook-bonus-number">02</div>
                     <div>
-                      <h4>L'e-book exclusif (32 pages)</h4>
-                      <p>"Le corps murmure longtemps avant d'être obligé de crier" - Apprenez à décrypter les signaux de votre corps.</p>
+                      <h4>L'e-book exclusif premium</h4>
+                      <p>"Pourquoi le corps parle avant l'épuisement" — Une réflexion approfondie et concrète sur les signaux faibles, la surcharge et la récupération. Un contenu dense, ciblé et directement applicable.</p>
                     </div>
                   </div>
                   <div className="ebook-bonus-item">
                     <div className="ebook-bonus-number">03</div>
                     <div>
-                      <h4>BONUS : 7 gestes quotidiens MTC</h4>
-                      <p>Auto-massages, points d'acupression et rituels énergétiques à pratiquer chez vous, dès aujourd'hui.</p>
+                      <h4>BONUS : Fiches conseils exclusives</h4>
+                      <p>Recevez régulièrement de nouvelles fiches pratiques : auto-massages, points d'acupression, rituels énergétiques saisonniers à appliquer chez vous.</p>
                     </div>
                   </div>
                   <div className="ebook-bonus-item">
                     <div className="ebook-bonus-number">04</div>
                     <div>
-                      <h4>BONUS : Guide alimentation énergétique</h4>
-                      <p>Les aliments qui soutiennent votre énergie selon les saisons et votre constitution.</p>
+                      <h4>BONUS : Conseils d'alimentation énergétique</h4>
+                      <p>Les aliments qui soutiennent votre énergie selon les saisons et votre constitution, accessibles dans nos fiches pratiques.</p>
                     </div>
                   </div>
                   <div className="ebook-bonus-item">
                     <div className="ebook-bonus-number">05</div>
                     <div>
                       <h4>BONUS : Recommandations personnalisées</h4>
-                      <p>Selon vos résultats, recevez des conseils ciblés pour retrouver votre équilibre.</p>
+                      <p>Selon vos résultats au bilan, recevez des conseils ciblés pour retrouver votre équilibre énergétique.</p>
                     </div>
                   </div>
                 </div>
