@@ -398,6 +398,41 @@ const Home = () => {
                   <div className="address-block">
                     <span className="address-line">{practitionerInfo.location}</span>
                     <span className="address-line">{practitionerInfo.address}</span>
+                    <div className="map-buttons">
+                      <a 
+                        href="https://www.google.com/maps/dir/?api=1&destination=265+route+Dominique+Joseph+Garat,+64200+Bassussarry" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="map-button map-button-google"
+                      >
+                        <svg className="map-icon" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Google Maps
+                      </a>
+                      <a 
+                        href="https://waze.com/ul?q=265+route+Dominique+Joseph+Garat+64200+Bassussarry&navigate=yes" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="map-button map-button-waze"
+                      >
+                        <svg className="map-icon" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20.54 6.63c-.81-1.5-2.04-2.73-3.61-3.6C15.4 2.18 13.74 1.7 12 1.7c-3.61 0-6.83 2.03-8.43 5.18-.79 1.55-1.07 3.3-.81 5.03.13.85.42 1.68.83 2.44.41.76.94 1.43 1.55 2-.32.64-.27 1.42.16 2.03.39.55 1.02.88 1.7.88.36 0 .71-.09 1.02-.27.34.13.69.24 1.05.32-.04.21-.06.43-.06.65 0 1.79 1.46 3.25 3.25 3.25s3.25-1.46 3.25-3.25c0-.06 0-.13-.01-.19h2.59c-.01.06-.01.13-.01.19 0 1.79 1.46 3.25 3.25 3.25s3.25-1.46 3.25-3.25-1.46-3.25-3.25-3.25c-1.16 0-2.18.61-2.76 1.52H10.7c-.58-.91-1.6-1.52-2.76-1.52-.45 0-.88.09-1.27.25-.27-.18-.51-.39-.74-.62.55.13 1.12.2 1.7.2 4.21 0 7.93-2.84 8.95-6.91.16-.64.24-1.31.24-1.99 0-.86-.13-1.71-.39-2.51.84.36 1.59.91 2.18 1.61.86 1.04 1.34 2.36 1.34 3.72 0 .54-.07 1.07-.21 1.59l1.93.51c.18-.69.27-1.39.27-2.11 0-1.81-.64-3.56-1.79-4.91zM9.5 9.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+                        </svg>
+                        Waze
+                      </a>
+                      <a 
+                        href="https://maps.apple.com/?q=265+route+Dominique+Joseph+Garat+64200+Bassussarry" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="map-button map-button-apple"
+                      >
+                        <svg className="map-icon" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Apple Plans
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <a href={`tel:${practitionerInfo.phoneRaw}`} className="about-detail about-detail-clickable">
@@ -786,6 +821,18 @@ const Home = () => {
               <div className="footer-contact">
                 <p>{practitionerInfo.location}</p>
                 <p>{practitionerInfo.address}</p>
+                <div className="footer-map-buttons">
+                  <a 
+                    href="https://www.google.com/maps/dir/?api=1&destination=265+route+Dominique+Joseph+Garat,+64200+Bassussarry" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="footer-map-link"
+                    title="Itinéraire Google Maps"
+                  >
+                    <MapPin className="footer-map-icon" />
+                    Itinéraire
+                  </a>
+                </div>
                 <p><a href={`tel:${practitionerInfo.phoneRaw}`} className="footer-phone-link">{practitionerInfo.phone}</a></p>
                 <p>{practitionerInfo.email}</p>
               </div>
