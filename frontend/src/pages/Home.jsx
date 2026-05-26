@@ -612,58 +612,107 @@ const Home = () => {
       {/* Lead Magnet - Self Assessment Section */}
       <section className="lead-magnet-section animate-on-scroll" id="evaluation" style={{ opacity: isVisible['evaluation'] ? 1 : 0 }}>
         <div className="section-container">
+          <div className="lead-magnet-header">
+            <div className="lead-magnet-badge">
+              <Sparkles className="lead-magnet-badge-icon" />
+              <span>100% Offert</span>
+            </div>
+            <span className="section-subtitle">Bilan énergétique gratuit + E-book offert</span>
+            <h2 className="lead-magnet-title">
+              Évaluez votre <span className="lead-magnet-accent">douleur, stress et fatigue</span><br />
+              en 2 minutes chrono
+            </h2>
+            <p className="lead-magnet-description">
+              Vous ressentez des tensions, du stress, des troubles du sommeil ou une fatigue persistante ?<br />
+              Faites le point sur votre équilibre énergétique selon la <strong>Médecine Traditionnelle Chinoise</strong> et recevez immédiatement <strong>votre e-book exclusif</strong> par email.
+            </p>
+          </div>
+
           <div className="lead-magnet-grid">
-            <div className="lead-magnet-content">
-              <div className="lead-magnet-badge">
-                <Sparkles className="lead-magnet-badge-icon" />
-                <span>Offert</span>
+            {/* Left: Ebook Visual + Bonuses */}
+            <div className="lead-magnet-left">
+              <div className="ebook-showcase">
+                <div className="ebook-glow"></div>
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_chinese-web-elegant/artifacts/jhb2y25q_7D548ED2-B9C4-4C4F-A7CA-62664EC6BB6F.PNG" 
+                  alt="E-book offert - Karl Bruisson - Le corps murmure longtemps avant d'être obligé de crier" 
+                  className="ebook-cover"
+                />
+                <div className="ebook-value-tag">
+                  <span className="ebook-value-old">Valeur 29€</span>
+                  <span className="ebook-value-new">OFFERT</span>
+                </div>
               </div>
-              <span className="section-subtitle">Auto-évaluation gratuite</span>
-              <h2 className="lead-magnet-title">
-                Évaluez votre équilibre énergétique <span className="lead-magnet-accent">en 2 minutes</span>
-              </h2>
-              <p className="lead-magnet-description">
-                Répondez à quelques questions simples pour identifier vos déséquilibres énergétiques selon les principes de la <strong>Médecine Traditionnelle Chinoise</strong>.
-              </p>
-              <div className="lead-magnet-benefits">
-                <div className="lead-magnet-benefit">
-                  <CheckCircle className="lead-magnet-benefit-icon" />
-                  <div>
-                    <h4>Auto-évaluation personnalisée</h4>
-                    <p>Identifiez vos zones de déséquilibre selon la MTC</p>
+
+              <div className="ebook-bonuses">
+                <h3 className="ebook-bonuses-title">
+                  <Sparkles className="ebook-bonus-icon" />
+                  Ce que vous allez recevoir
+                </h3>
+                <div className="ebook-bonus-list">
+                  <div className="ebook-bonus-item">
+                    <div className="ebook-bonus-number">01</div>
+                    <div>
+                      <h4>Votre bilan personnalisé instantané</h4>
+                      <p>Identifiez précisément vos zones de déséquilibre selon la MTC : douleur, stress, sommeil, fatigue, digestion.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="lead-magnet-benefit">
-                  <CheckCircle className="lead-magnet-benefit-icon" />
-                  <div>
-                    <h4>E-book gratuit offert</h4>
-                    <p>Recevez votre guide pratique par email</p>
+                  <div className="ebook-bonus-item">
+                    <div className="ebook-bonus-number">02</div>
+                    <div>
+                      <h4>L'e-book exclusif (32 pages)</h4>
+                      <p>"Le corps murmure longtemps avant d'être obligé de crier" - Apprenez à décrypter les signaux de votre corps.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="lead-magnet-benefit">
-                  <CheckCircle className="lead-magnet-benefit-icon" />
-                  <div>
-                    <h4>Conseils personnalisés</h4>
-                    <p>Découvrez les premiers gestes à adopter au quotidien</p>
+                  <div className="ebook-bonus-item">
+                    <div className="ebook-bonus-number">03</div>
+                    <div>
+                      <h4>BONUS : 7 gestes quotidiens MTC</h4>
+                      <p>Auto-massages, points d'acupression et rituels énergétiques à pratiquer chez vous, dès aujourd'hui.</p>
+                    </div>
+                  </div>
+                  <div className="ebook-bonus-item">
+                    <div className="ebook-bonus-number">04</div>
+                    <div>
+                      <h4>BONUS : Guide alimentation énergétique</h4>
+                      <p>Les aliments qui soutiennent votre énergie selon les saisons et votre constitution.</p>
+                    </div>
+                  </div>
+                  <div className="ebook-bonus-item">
+                    <div className="ebook-bonus-number">05</div>
+                    <div>
+                      <h4>BONUS : Recommandations personnalisées</h4>
+                      <p>Selon vos résultats, recevez des conseils ciblés pour retrouver votre équilibre.</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Right: Form */}
             <div className="lead-magnet-form">
               <div className="lead-magnet-form-decoration">
                 <span className="lead-magnet-chinese">问</span>
               </div>
               <div className="lead-magnet-form-wrapper">
+                <div className="lead-magnet-form-header">
+                  <h3>Commencez votre bilan</h3>
+                  <p>Remplissez le formulaire ci-dessous pour recevoir <strong>immédiatement</strong> votre bilan + e-book</p>
+                </div>
                 <iframe 
                   width="540" 
-                  height="500" 
+                  height="700" 
                   src="https://f40d878d.sibforms.com/serve/MUIFANlfGbTHlobS3PWmjbH-fKIN7QKIYOGOwcnNM3qONqhM8DwxsxfyxqwjVPZf6NXJba3tsm02nuRnZHyA8MiKOu4EPVN2TSofr7rKHUVpLcw-K9B1_Chc05mRTTWpCrzlLlFGihQrt4qKutD0paz-iuHRZLpDeohfW6meZNkQV2vc0hI53EKDCJ0iMADqyReVeSPmaPPYmFi5yw==" 
                   frameBorder="0" 
                   scrolling="auto" 
                   allowFullScreen 
-                  title="Auto-évaluation gratuite MTC"
+                  title="Bilan énergétique gratuit - Karl Bruisson MTC"
                   className="lead-magnet-iframe"
                 />
+                <div className="lead-magnet-trust">
+                  <Shield className="trust-icon" />
+                  <span>Vos données sont 100% protégées. Aucun spam, désinscription en 1 clic.</span>
+                </div>
               </div>
             </div>
           </div>
