@@ -117,6 +117,25 @@ body {
   width: 100%;
 }
 
+.nav-link-highlight {
+  background: var(--accent-gold);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 700 !important;
+  transition: all 0.3s ease;
+}
+
+.nav-link-highlight::after {
+  display: none;
+}
+
+.nav-link-highlight:hover {
+  background: var(--accent-terracotta);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(198, 162, 87, 0.3);
+}
+
 .cta-button {
   background: var(--primary-forest);
   color: white;
@@ -1685,6 +1704,177 @@ body {
   .esthetic-grid,
   .training-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Lead Magnet Section */
+.lead-magnet-section {
+  background: linear-gradient(135deg, var(--primary-forest) 0%, var(--primary-sage) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.lead-magnet-section::before {
+  content: '问';
+  position: absolute;
+  font-size: 40rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.03);
+  top: 50%;
+  left: -5%;
+  transform: translateY(-50%);
+  font-family: serif;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lead-magnet-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lead-magnet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lead-magnet-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--accent-gold);
+  color: var(--text-dark);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  width: fit-content;
+}
+
+.lead-magnet-badge-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.lead-magnet-section .section-subtitle {
+  color: var(--accent-gold);
+}
+
+.lead-magnet-title {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: white;
+}
+
+.lead-magnet-accent {
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, white 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lead-magnet-description {
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  opacity: 0.95;
+  margin-bottom: 1rem;
+}
+
+.lead-magnet-description strong {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.lead-magnet-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.lead-magnet-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.lead-magnet-benefit-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.lead-magnet-benefit h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.lead-magnet-benefit p {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+.lead-magnet-form {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.lead-magnet-form-decoration {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  z-index: 0;
+}
+
+.lead-magnet-chinese {
+  font-size: 8rem;
+  color: rgba(198, 162, 87, 0.15);
+  font-family: serif;
+  font-weight: 300;
+}
+
+.lead-magnet-form-wrapper {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 580px;
+}
+
+.lead-magnet-iframe {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+  min-height: 500px;
+}
+
+@media (max-width: 1024px) {
+  .lead-magnet-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .lead-magnet-title {
+    font-size: 2.25rem;
   }
 }
 

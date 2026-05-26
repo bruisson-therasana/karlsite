@@ -96,8 +96,7 @@ const Home = () => {
             <a href="#soins" className="nav-link">Mes soins</a>
             <a href="#esthetique" className="nav-link">Esthétique</a>
             <a href="#apropos" className="nav-link">À propos</a>
-            <a href="#formation" className="nav-link">Formation</a>
-            <a href="#engagements" className="nav-link">Engagements</a>
+            <a href="#evaluation" className="nav-link nav-link-highlight">Bilan offert</a>
             <Button onClick={handleBooking} className="cta-button">Prendre RDV</Button>
           </nav>
         </div>
@@ -607,6 +606,67 @@ const Home = () => {
               </AccordionItem>
             ))}
           </Accordion>
+        </div>
+      </section>
+
+      {/* Lead Magnet - Self Assessment Section */}
+      <section className="lead-magnet-section animate-on-scroll" id="evaluation" style={{ opacity: isVisible['evaluation'] ? 1 : 0 }}>
+        <div className="section-container">
+          <div className="lead-magnet-grid">
+            <div className="lead-magnet-content">
+              <div className="lead-magnet-badge">
+                <Sparkles className="lead-magnet-badge-icon" />
+                <span>Offert</span>
+              </div>
+              <span className="section-subtitle">Auto-évaluation gratuite</span>
+              <h2 className="lead-magnet-title">
+                Évaluez votre équilibre énergétique <span className="lead-magnet-accent">en 2 minutes</span>
+              </h2>
+              <p className="lead-magnet-description">
+                Répondez à quelques questions simples pour identifier vos déséquilibres énergétiques selon les principes de la <strong>Médecine Traditionnelle Chinoise</strong>.
+              </p>
+              <div className="lead-magnet-benefits">
+                <div className="lead-magnet-benefit">
+                  <CheckCircle className="lead-magnet-benefit-icon" />
+                  <div>
+                    <h4>Auto-évaluation personnalisée</h4>
+                    <p>Identifiez vos zones de déséquilibre selon la MTC</p>
+                  </div>
+                </div>
+                <div className="lead-magnet-benefit">
+                  <CheckCircle className="lead-magnet-benefit-icon" />
+                  <div>
+                    <h4>E-book gratuit offert</h4>
+                    <p>Recevez votre guide pratique par email</p>
+                  </div>
+                </div>
+                <div className="lead-magnet-benefit">
+                  <CheckCircle className="lead-magnet-benefit-icon" />
+                  <div>
+                    <h4>Conseils personnalisés</h4>
+                    <p>Découvrez les premiers gestes à adopter au quotidien</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="lead-magnet-form">
+              <div className="lead-magnet-form-decoration">
+                <span className="lead-magnet-chinese">问</span>
+              </div>
+              <div className="lead-magnet-form-wrapper">
+                <iframe 
+                  width="540" 
+                  height="500" 
+                  src="https://f40d878d.sibforms.com/serve/MUIFANlfGbTHlobS3PWmjbH-fKIN7QKIYOGOwcnNM3qONqhM8DwxsxfyxqwjVPZf6NXJba3tsm02nuRnZHyA8MiKOu4EPVN2TSofr7rKHUVpLcw-K9B1_Chc05mRTTWpCrzlLlFGihQrt4qKutD0paz-iuHRZLpDeohfW6meZNkQV2vc0hI53EKDCJ0iMADqyReVeSPmaPPYmFi5yw==" 
+                  frameBorder="0" 
+                  scrolling="auto" 
+                  allowFullScreen 
+                  title="Auto-évaluation gratuite MTC"
+                  className="lead-magnet-iframe"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
