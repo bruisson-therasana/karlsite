@@ -9,7 +9,7 @@ export const practitionerInfo = {
   description: "Formé aux techniques traditionnelles de la Médecine Chinoise, je vous accompagne dans le rééquilibrage de votre énergie vitale pour retrouver harmonie et bien-être durable. Mon approche personnalisée allie tradition millénaire et compréhension moderne du corps.",
   phone: "+33 6 95 86 62 50",
   phoneRaw: "+33695866250",
-  email: "contact@karlbruisson-mtc.fr",
+  email: "cabinet@karl-bruisson.fr",
   experience: "5",
   experienceLabel: "ans d'expérience",
   photoUrl: "https://customer-assets.emergentagent.com/job_chinese-web-elegant/artifacts/pconcy80_IMG_2824.JPG",
