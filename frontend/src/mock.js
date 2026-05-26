@@ -4,9 +4,11 @@ export const practitionerInfo = {
   name: "Karl Bruisson",
   title: "Praticien en Médecine Traditionnelle Chinoise",
   subtitle: "Acupuncture • Moxibustion • Ventouses",
-  location: "CEERS Basque - Domaine du Makila, Bassussarry près de Bayonne",
+  location: "CEERS Basque - Domaine du Makila",
+  address: "265 route Dominique Joseph Garat, 64200 Bassussarry",
   description: "Formé aux techniques traditionnelles de la Médecine Chinoise, je vous accompagne dans le rééquilibrage de votre énergie vitale pour retrouver harmonie et bien-être durable. Mon approche personnalisée allie tradition millénaire et compréhension moderne du corps.",
-  phone: "06 XX XX XX XX",
+  phone: "+33 6 95 86 62 50",
+  phoneRaw: "+33695866250",
   email: "contact@karlbruisson-mtc.fr",
   experience: "5",
   experienceLabel: "ans d'expérience",
@@ -23,6 +25,66 @@ export const practitionerInfo = {
     description: "Fondateur du collectif Therasana, regroupant des thérapeutes engagés pour la prévention des Risques Psychosociaux (RPS) et l'amélioration de la Qualité de Vie au Travail (QVT) dans les Landes (40) et Pyrénées-Atlantiques (64)."
   }
 };
+
+export const trainingCursus = [
+  {
+    id: 1,
+    school: "IMTC",
+    fullName: "Institut de Médecine Traditionnelle Chinoise",
+    description: "Formation approfondie aux techniques fondamentales de la MTC : acupuncture, moxibustion, ventouses, diététique et pharmacopée chinoise.",
+    url: "https://www.imtc.fr/",
+    chineseChar: "学"
+  },
+  {
+    id: 2,
+    school: "École Philippe Sionneau",
+    fullName: "Formation en acupuncture par Philippe Sionneau",
+    description: "Formation continue auprès de Philippe Sionneau, expert reconnu en médecine chinoise classique, spécialisé en gynécologie, dermatologie et acupuncture du Yi Jing.",
+    url: "https://formation-en-acupuncture.com/",
+    chineseChar: "师"
+  },
+  {
+    id: 3,
+    school: "Formation continue",
+    fullName: "Perfectionnement permanent",
+    description: "Je me forme continuellement aux nouvelles techniques et approches pour vous offrir un accompagnement toujours plus efficace et adapté à vos besoins.",
+    url: null,
+    chineseChar: "进"
+  }
+];
+
+export const estheticTreatments = [
+  {
+    id: 1,
+    name: "Acupuncture Esthétique",
+    chineseChar: "美",
+    chineseName: "美容针灸",
+    description: "Technique naturelle de rajeunissement par stimulation des points énergétiques du visage. Améliore le teint, réduit les rides, tonifie les tissus. Sans injection ni chirurgie.",
+    duration: "1h",
+    price: "70€",
+    benefits: ["Sans injection ni chirurgie", "Réduction des rides et ridules", "Teint éclatant et lumineux", "Tonification naturelle des tissus"]
+  },
+  {
+    id: 2,
+    name: "Forfait Esthétique",
+    chineseChar: "颜",
+    chineseName: "套餐",
+    description: "Pour des résultats visibles et durables, cure de 5 séances d'acupuncture esthétique. Approche complète et personnalisée pour révéler votre beauté naturelle.",
+    duration: "5 séances",
+    price: "320€",
+    benefits: ["5 séances complètes", "Résultats visibles et durables", "Suivi personnalisé", "Économie de 30€"]
+  },
+  {
+    id: 3,
+    name: "Soin Signature",
+    chineseChar: "尊",
+    chineseName: "至尊护理",
+    description: "Soin d'exception alliant énergétique chinoise et techniques spa pour une relance globale de l'énergie. Une parenthèse hors du temps pour se reconnecter pleinement à soi.",
+    duration: "2h",
+    price: "120€",
+    benefits: ["Soin complet 2 heures", "Énergétique + Spa", "Relance globale de l'énergie", "Expérience d'exception"]
+  }
+];
 
 export const whyConsultReasons = [
   {

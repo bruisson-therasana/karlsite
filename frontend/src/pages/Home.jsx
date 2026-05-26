@@ -6,7 +6,8 @@ import { Separator } from '../components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { 
   Brain, Activity, Moon, Droplets, Heart, Wind, Zap, Shield,
-  MapPin, Phone, Mail, Clock, Star, CheckCircle, AlertCircle, Facebook, Linkedin, Calendar
+  MapPin, Phone, Mail, Clock, Star, CheckCircle, AlertCircle, Facebook, Linkedin, Calendar,
+  GraduationCap, Sparkles, ExternalLink
 } from 'lucide-react';
 import { 
   practitionerInfo, 
@@ -16,7 +17,9 @@ import {
   testimonials,
   faqItems,
   pricing,
-  chineseWisdom
+  chineseWisdom,
+  trainingCursus,
+  estheticTreatments
 } from '../mock';
 import '../styles/home.css';
 
@@ -91,8 +94,9 @@ const Home = () => {
           <nav className="nav-menu">
             <a href="#pourquoi" className="nav-link">Pourquoi consulter</a>
             <a href="#soins" className="nav-link">Mes soins</a>
-            <a href="#deroulement" className="nav-link">Déroulement</a>
+            <a href="#esthetique" className="nav-link">Esthétique</a>
             <a href="#apropos" className="nav-link">À propos</a>
+            <a href="#formation" className="nav-link">Formation</a>
             <a href="#engagements" className="nav-link">Engagements</a>
             <Button onClick={handleBooking} className="cta-button">Prendre RDV</Button>
           </nav>
@@ -241,6 +245,50 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Esthetic & Signature Treatments Section */}
+      <section className="esthetic-section animate-on-scroll" id="esthetique" style={{ opacity: isVisible['esthetique'] ? 1 : 0 }}>
+        <div className="section-container">
+          <div className="section-header">
+            <span className="section-subtitle">Beauté & bien-être</span>
+            <h2 className="section-title">Soins esthétiques & Soin Signature</h2>
+            <p className="section-description">
+              Au-delà du soin thérapeutique, je propose des soins esthétiques naturels et un soin signature d'exception <br />
+              pour révéler votre beauté intérieure et extérieure.
+            </p>
+          </div>
+          <div className="esthetic-grid">
+            {estheticTreatments.map((treatment, index) => (
+              <Card key={treatment.id} className={`esthetic-card ${treatment.id === 3 ? 'esthetic-card-signature' : ''}`} style={{ animationDelay: `${index * 0.15}s` }}>
+                <div className="esthetic-chinese">{treatment.chineseChar}</div>
+                <div className="esthetic-chinese-name">{treatment.chineseName}</div>
+                {treatment.id === 3 && <div className="signature-badge"><Sparkles className="signature-icon" />Soin d'exception</div>}
+                <CardHeader>
+                  <CardTitle className="esthetic-title">{treatment.name}</CardTitle>
+                  <CardDescription className="esthetic-description">{treatment.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="esthetic-benefits">
+                    {treatment.benefits.map((benefit, idx) => (
+                      <div key={idx} className="benefit-item">
+                        <CheckCircle className="benefit-icon" />
+                        <span>{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="esthetic-pricing">
+                    <span className="esthetic-duration">{treatment.duration}</span>
+                    <span className="esthetic-price">{treatment.price}</span>
+                  </div>
+                  <Button onClick={handleBooking} className="esthetic-button">
+                    Réserver ce soin
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Chinese Wisdom Section */}
       <section className="wisdom-section animate-on-scroll" id="sagesse" style={{ opacity: isVisible['sagesse'] ? 1 : 0 }}>
         <div className="section-container">
@@ -348,8 +396,15 @@ const Home = () => {
               <div className="about-details">
                 <div className="about-detail">
                   <MapPin className="detail-icon" />
-                  <span>{practitionerInfo.location}</span>
+                  <div className="address-block">
+                    <span className="address-line">{practitionerInfo.location}</span>
+                    <span className="address-line">{practitionerInfo.address}</span>
+                  </div>
                 </div>
+                <a href={`tel:${practitionerInfo.phoneRaw}`} className="about-detail about-detail-clickable">
+                  <Phone className="detail-icon" />
+                  <span>{practitionerInfo.phone}</span>
+                </a>
               </div>
               <div className="social-links">
                 <a href={practitionerInfo.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-link">
@@ -383,6 +438,43 @@ const Home = () => {
                 className="cabinet-photo"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Training/Cursus Section */}
+      <section className="training-section animate-on-scroll" id="formation" style={{ opacity: isVisible['formation'] ? 1 : 0 }}>
+        <div className="section-container">
+          <div className="section-header">
+            <span className="section-subtitle">Mon cursus de formation</span>
+            <h2 className="section-title">Une formation rigoureuse et continue</h2>
+            <p className="section-description">
+              Formé auprès d'écoles reconnues en France, je continue à me former régulièrement <br />
+              pour être toujours plus efficace dans mon accompagnement.
+            </p>
+          </div>
+          <div className="training-grid">
+            {trainingCursus.map((training, index) => (
+              <Card key={training.id} className="training-card" style={{ animationDelay: `${index * 0.15}s` }}>
+                <div className="training-chinese">{training.chineseChar}</div>
+                <CardHeader>
+                  <div className="training-icon-wrapper">
+                    <GraduationCap className="training-icon" />
+                  </div>
+                  <CardTitle className="training-school">{training.school}</CardTitle>
+                  <CardDescription className="training-fullname">{training.fullName}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="training-description">{training.description}</p>
+                  {training.url && (
+                    <a href={training.url} target="_blank" rel="noopener noreferrer" className="training-link">
+                      Visiter le site
+                      <ExternalLink className="training-link-icon" />
+                    </a>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -535,10 +627,10 @@ const Home = () => {
               </Button>
             </div>
             <div className="cta-contact-info">
-              <div className="contact-item">
+              <a href={`tel:${practitionerInfo.phoneRaw}`} className="contact-item contact-item-clickable">
                 <Phone className="contact-icon" />
                 <span>{practitionerInfo.phone}</span>
-              </div>
+              </a>
               <div className="contact-item">
                 <Mail className="contact-icon" />
                 <span>{practitionerInfo.email}</span>
@@ -584,7 +676,8 @@ const Home = () => {
               <h4 className="footer-title">Contact</h4>
               <div className="footer-contact">
                 <p>{practitionerInfo.location}</p>
-                <p>{practitionerInfo.phone}</p>
+                <p>{practitionerInfo.address}</p>
+                <p><a href={`tel:${practitionerInfo.phoneRaw}`} className="footer-phone-link">{practitionerInfo.phone}</a></p>
                 <p>{practitionerInfo.email}</p>
               </div>
               <Button onClick={handleBooking} className="footer-booking-button">
