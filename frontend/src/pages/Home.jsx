@@ -6,7 +6,7 @@ import { Separator } from '../components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { 
   Brain, Activity, Moon, Droplets, Heart, Wind, Zap, Shield,
-  MapPin, Phone, Mail, Clock, Star, CheckCircle, AlertCircle
+  MapPin, Phone, Mail, Clock, Star, CheckCircle, AlertCircle, Facebook, Linkedin, Calendar
 } from 'lucide-react';
 import { 
   practitionerInfo, 
@@ -15,7 +15,8 @@ import {
   sessionProcess,
   testimonials,
   faqItems,
-  pricing
+  pricing,
+  chineseWisdom
 } from '../mock';
 import '../styles/home.css';
 
@@ -64,7 +65,11 @@ const Home = () => {
   }, []);
 
   const handleBooking = () => {
-    alert('Système de réservation à venir - Contactez Karl Bruisson par téléphone');
+    window.open(practitionerInfo.socialLinks.resalib, '_blank');
+  };
+
+  const handleTherasana = () => {
+    window.open(practitionerInfo.socialLinks.therasana, '_blank');
   };
 
   const handleContact = () => {
@@ -88,6 +93,7 @@ const Home = () => {
             <a href="#soins" className="nav-link">Mes soins</a>
             <a href="#deroulement" className="nav-link">Déroulement</a>
             <a href="#apropos" className="nav-link">À propos</a>
+            <a href="#engagements" className="nav-link">Engagements</a>
             <Button onClick={handleBooking} className="cta-button">Prendre RDV</Button>
           </nav>
         </div>
@@ -112,7 +118,7 @@ const Home = () => {
           </p>
           <div className="hero-actions">
             <Button onClick={handleBooking} size="lg" className="primary-button">
-              <Phone className="button-icon" />
+              <Calendar className="button-icon" />
               Prendre rendez-vous
             </Button>
             <Button onClick={handleContact} variant="outline" size="lg" className="secondary-button">
@@ -125,6 +131,13 @@ const Home = () => {
               <div>
                 <span className="info-label">Première séance</span>
                 <span className="info-value">{pricing.firstSession.duration} - {pricing.firstSession.price}</span>
+              </div>
+            </div>
+            <div className="info-card">
+              <div className="info-chinese">經驗</div>
+              <div>
+                <span className="info-label">Expérience</span>
+                <span className="info-value">{practitionerInfo.experience} {practitionerInfo.experienceLabel}</span>
               </div>
             </div>
             <div className="info-card">
@@ -171,6 +184,7 @@ const Home = () => {
               const IconComponent = iconMap[reason.icon];
               return (
                 <Card key={reason.id} className="reason-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="reason-chinese-bg">{reason.chineseChar}</div>
                   <CardHeader>
                     <div className="reason-icon-wrapper">
                       <IconComponent className="reason-icon" />
@@ -199,13 +213,14 @@ const Home = () => {
             <span className="section-subtitle">Mes outils thérapeutiques</span>
             <h2 className="section-title">Les soins de Médecine Traditionnelle Chinoise</h2>
             <p className="section-description">
-              Une approche millénaire pour rééquilibrer votre énergie vitale (Qi) et harmoniser corps et esprit.
+              Une approche millénaire pour rééquilibrer votre énergie vitale (气 Qi) et harmoniser corps et esprit.
             </p>
           </div>
           <div className="treatments-grid">
             {mtcTreatments.map((treatment, index) => (
               <Card key={treatment.id} className="treatment-card" style={{ animationDelay: `${index * 0.15}s` }}>
                 <div className="treatment-chinese">{treatment.chineseChar}</div>
+                <div className="treatment-chinese-name">{treatment.chineseName}</div>
                 <CardHeader>
                   <CardTitle className="treatment-title">{treatment.name}</CardTitle>
                   <CardDescription className="treatment-description">{treatment.description}</CardDescription>
@@ -226,6 +241,25 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Chinese Wisdom Section */}
+      <section className="wisdom-section animate-on-scroll" id="sagesse" style={{ opacity: isVisible['sagesse'] ? 1 : 0 }}>
+        <div className="section-container">
+          <div className="wisdom-content">
+            <h2 className="wisdom-title">Les principes de la Médecine Chinoise</h2>
+            <div className="wisdom-grid">
+              {chineseWisdom.map((wisdom, index) => (
+                <div key={wisdom.id} className="wisdom-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="wisdom-chinese">{wisdom.chinese}</div>
+                  <div className="wisdom-pinyin">{wisdom.pinyin}</div>
+                  <div className="wisdom-translation">{wisdom.translation}</div>
+                  <div className="wisdom-meaning">{wisdom.meaning}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Session Process Section */}
       <section className="process-section animate-on-scroll" id="deroulement" style={{ opacity: isVisible['deroulement'] ? 1 : 0 }}>
         <div className="section-container">
@@ -239,6 +273,7 @@ const Home = () => {
           <div className="process-grid">
             {sessionProcess.map((step, index) => (
               <div key={step.id} className="process-step" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="step-chinese-large">{step.chineseChar}</div>
                 <div className="step-number">{step.step}</div>
                 <div className="step-content">
                   <h3 className="step-title">{step.title}</h3>
@@ -273,23 +308,41 @@ const Home = () => {
                 </div>
               </CardContent>
             </Card>
+            <Card className="pricing-card pricing-card-children">
+              <CardHeader>
+                <CardTitle>Séance enfant</CardTitle>
+                <CardDescription>{pricing.children.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="pricing-info">
+                  <span className="pricing-duration">{pricing.children.duration}</span>
+                  <span className="pricing-price">{pricing.children.price}</span>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section with Real Photos */}
       <section className="about-section animate-on-scroll" id="apropos" style={{ opacity: isVisible['apropos'] ? 1 : 0 }}>
         <div className="section-container">
           <div className="about-grid">
             <div className="about-image">
-              <div className="about-placeholder">
-                <span className="placeholder-text">師</span>
-              </div>
+              <img 
+                src={practitionerInfo.photoUrl} 
+                alt="Karl Bruisson - Praticien MTC" 
+                className="practitioner-photo"
+              />
             </div>
             <div className="about-content">
               <span className="section-subtitle">Votre praticien</span>
               <h2 className="section-title">{practitionerInfo.name}</h2>
               <p className="about-subtitle">{practitionerInfo.title}</p>
+              <div className="about-experience">
+                <span className="experience-number">{practitionerInfo.experience}</span>
+                <span className="experience-label">{practitionerInfo.experienceLabel}</span>
+              </div>
               <Separator className="about-separator" />
               <p className="about-description">{practitionerInfo.description}</p>
               <div className="about-details">
@@ -298,9 +351,116 @@ const Home = () => {
                   <span>{practitionerInfo.location}</span>
                 </div>
               </div>
+              <div className="social-links">
+                <a href={practitionerInfo.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-link">
+                  <Facebook className="social-icon" />
+                  <span>Facebook</span>
+                </a>
+                <a href={practitionerInfo.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
+                  <Linkedin className="social-icon" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
               <Button onClick={handleBooking} className="accent-button">
                 Prendre rendez-vous
               </Button>
+            </div>
+          </div>
+          
+          {/* Cabinet Photo */}
+          <div className="cabinet-section">
+            <div className="cabinet-content">
+              <span className="section-subtitle">Le Cabinet</span>
+              <h3 className="cabinet-title">Un espace dédié à votre bien-être</h3>
+              <p className="cabinet-description">
+                Un lieu apaisant et chaleureux, pensé pour favoriser la détente et l'harmonisation énergétique.
+              </p>
+            </div>
+            <div className="cabinet-image">
+              <img 
+                src={practitionerInfo.cabinetPhotoUrl} 
+                alt="Cabinet de Médecine Traditionnelle Chinoise" 
+                className="cabinet-photo"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* My Commitments Section - Therasana */}
+      <section className="commitments-section animate-on-scroll" id="engagements" style={{ opacity: isVisible['engagements'] ? 1 : 0 }}>
+        <div className="section-container">
+          <div className="section-header">
+            <span className="section-subtitle">Mes engagements</span>
+            <h2 className="section-title">Une démarche éthique et collective</h2>
+            <p className="section-description">
+              Au-delà de ma pratique, je m'engage pour une approche thérapeutique responsable, <br />
+              collaborative et au service du bien-être collectif.
+            </p>
+          </div>
+          
+          {/* Therasana Featured Card */}
+          <div className="therasana-featured">
+            <div className="therasana-content">
+              <div className="therasana-badge">
+                <span className="therasana-badge-chinese">合</span>
+                <span>Fondateur du collectif</span>
+              </div>
+              <h3 className="therasana-title">Therasana</h3>
+              <p className="therasana-subtitle">Collectif de thérapeutes engagés pour les RPS & la QVT</p>
+              <p className="therasana-description">
+                J'ai fondé <strong>Therasana</strong>, un collectif rassemblant des thérapeutes engagés 
+                pour la prévention des <strong>Risques Psychosociaux (RPS)</strong> et l'amélioration 
+                de la <strong>Qualité de Vie au Travail (QVT)</strong> sur les départements des 
+                <strong> Landes (40)</strong> et des <strong>Pyrénées-Atlantiques (64)</strong>.
+              </p>
+              <p className="therasana-description">
+                Notre mission : accompagner les entreprises et leurs collaborateurs vers un mieux-être 
+                durable grâce à des approches complémentaires en médecines naturelles.
+              </p>
+              <Button onClick={handleTherasana} className="therasana-button">
+                Découvrir le collectif Therasana
+              </Button>
+            </div>
+            <div className="therasana-visual">
+              <div className="therasana-circle">
+                <span className="therasana-chinese-large">和</span>
+                <span className="therasana-circle-text">Harmonie</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Other Commitments */}
+          <div className="commitments-grid">
+            <div className="commitment-card">
+              <div className="commitment-icon-wrapper">
+                <Heart className="commitment-icon" />
+              </div>
+              <h4 className="commitment-title">Approche personnalisée</h4>
+              <p className="commitment-description">
+                Chaque patient est unique. Mon bilan énergétique approfondi me permet d'adapter 
+                précisément chaque soin à votre terrain et vos besoins.
+              </p>
+            </div>
+            <div className="commitment-card">
+              <div className="commitment-icon-wrapper">
+                <Shield className="commitment-icon" />
+              </div>
+              <h4 className="commitment-title">Éthique médicale</h4>
+              <p className="commitment-description">
+                Je m'engage à toujours travailler en complémentarité avec votre médecin traitant, 
+                jamais en substitution. Votre santé est notre priorité commune.
+              </p>
+            </div>
+            <div className="commitment-card">
+              <div className="commitment-icon-wrapper">
+                <Zap className="commitment-icon" />
+              </div>
+              <h4 className="commitment-title">Formation continue</h4>
+              <p className="commitment-description">
+                La MTC est un savoir vivant. Je me forme continuellement aux techniques 
+                traditionnelles et aux approches modernes pour vous offrir le meilleur accompagnement.
+              </p>
             </div>
           </div>
         </div>
@@ -312,6 +472,14 @@ const Home = () => {
           <div className="section-header">
             <span className="section-subtitle">Témoignages</span>
             <h2 className="section-title">Ce qu'ils en disent</h2>
+            <div className="rating-display">
+              <div className="stars-large">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="star-icon-large" fill="currentColor" />
+                ))}
+              </div>
+              <span className="rating-text">5.0/5 sur la base de nos patients</span>
+            </div>
           </div>
           <div className="testimonials-grid">
             {testimonials.map((testimonial, index) => (
@@ -352,6 +520,7 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="cta-section animate-on-scroll" id="contact" style={{ opacity: isVisible['contact'] ? 1 : 0 }}>
+        <div className="cta-chinese-bg">和</div>
         <div className="section-container">
           <div className="cta-content">
             <h2 className="cta-title">Prêt(e) à prendre soin de vous ?</h2>
@@ -361,7 +530,7 @@ const Home = () => {
             </p>
             <div className="cta-actions">
               <Button onClick={handleBooking} size="lg" className="primary-button-large">
-                <Phone className="button-icon" />
+                <Calendar className="button-icon" />
                 Prendre rendez-vous
               </Button>
             </div>
@@ -392,6 +561,14 @@ const Home = () => {
                 </div>
               </div>
               <p className="footer-tagline">Acupuncture • Moxibustion • Ventouses</p>
+              <div className="footer-social">
+                <a href={practitionerInfo.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                  <Facebook className="footer-social-icon" />
+                </a>
+                <a href={practitionerInfo.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                  <Linkedin className="footer-social-icon" />
+                </a>
+              </div>
             </div>
             <div className="footer-section">
               <h4 className="footer-title">Navigation</h4>
@@ -400,6 +577,7 @@ const Home = () => {
                 <a href="#soins">Mes soins</a>
                 <a href="#deroulement">Déroulement</a>
                 <a href="#apropos">À propos</a>
+                <a href="#temoignages">Témoignages</a>
               </nav>
             </div>
             <div className="footer-section">
@@ -409,6 +587,9 @@ const Home = () => {
                 <p>{practitionerInfo.phone}</p>
                 <p>{practitionerInfo.email}</p>
               </div>
+              <Button onClick={handleBooking} className="footer-booking-button">
+                Prendre rendez-vous
+              </Button>
             </div>
           </div>
           <Separator className="footer-separator" />
